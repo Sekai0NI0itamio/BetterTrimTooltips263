@@ -29,12 +29,12 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
  *
  * The Fabric version used Fabric API ItemTooltipCallback; Forge has no such
  * callback, so this is a mixin on the vanilla tooltip generation entry point
- * ArmorTrim.appendTooltip instead.
+ * ArmorTrim.appendUpgradeHoverText instead.
  */
 @Mixin(ArmorTrim.class)
 public class ArmorTrimMixin {
 
-    @Inject(at = @At("TAIL"), method = "appendTooltip(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/core/RegistryAccess;Ljava/util/List;)V")
+    @Inject(at = @At("TAIL"), method = "appendUpgradeHoverText(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/core/RegistryAccess;Ljava/util/List;)V")
     private static void bettertrimtooltips$appendTooltip(ItemStack stack, RegistryAccess registryAccess, List<Component> tooltip, CallbackInfo info) {
         CompoundTag tag = stack.getTag();
         if (tag == null) {
