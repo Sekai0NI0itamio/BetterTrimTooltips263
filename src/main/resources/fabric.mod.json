@@ -1,0 +1,32 @@
+{
+	"schemaVersion": 1,
+	"id": "bettertrimtooltips263",
+	"version": "${version}",
+	"name": "Better Trim Tooltips",
+	"description": "Condenses the tooltips of trimmed armor items from multiple lines into one line. Unofficial port of Better Trim Tooltips by Andrew6rant for Minecraft 26.3 (Fabric). All credit for the original concept, design, and logic goes to Andrew6rant (Andrew Grant). Code updated to 26.3 by Itamio. See NOTICE for licensing details.",
+	"authors": ["Itamio", "Andrew6rant (Andrew Grant)"],
+	"contact": {
+		"homepage": "https://github.com/Sekai0NI0itamio/BetterTrimTooltips263",
+		"sources": "https://github.com/Sekai0NI0itamio/BetterTrimTooltips263",
+		"issues": "https://github.com/Sekai0NI0itamio/BetterTrimTooltips263/issues"
+	},
+	"license": "MIT",
+	"environment": "client",
+	"entrypoints": {
+		"client": [
+			"itamio.bettertrimtooltips.BetterTrimTooltipsClient"
+		]
+	},
+	"mixins": [
+		{
+			"config": "bettertrimtooltips263.client.mixins.json",
+			"environment": "client"
+		}
+	],
+	"depends": {
+		"fabricloader": ">=0.20.1",
+		"minecraft": "~26.3",
+		"java": ">=25",
+		"fabric-api": "*"
+	}
+}

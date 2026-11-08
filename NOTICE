@@ -1,0 +1,16 @@
+NOTICE
+
+Better Trim Tooltips (Itamio port for Minecraft 26.3)
+
+This mod is an unofficial port of "Better Trim Tooltips" by Andrew6rant
+(Andrew Grant), originally for Minecraft 1.19.4/1.20 Fabric/Quilt
+(https://github.com/Andrew6rant/Better-Trim-Tooltips,
+https://modrinth.com/mod/better-trim-tooltips, MIT License).
+
+All credit for the original concept, design, and logic goes to Andrew6rant.
+This port was created by Itamio to bring the functionality to Minecraft 26.3
+because the original mod has not been updated to this version.
+
+Itamio does not take credit for any of the original assets or logic.
+The code was self-updated to be compatible with Minecraft 26.3 (Fabric).
+Original LICENSE (MIT, Copyright (c) 2023 Andrew Grant) is preserved below.
