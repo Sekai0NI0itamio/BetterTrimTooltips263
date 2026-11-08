@@ -12,6 +12,7 @@ import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.ComponentContents;
+import net.minecraft.network.chat.Style;
 import net.minecraft.network.chat.contents.TranslatableContents;
 
 /**
@@ -71,10 +72,11 @@ public class BetterTrimTooltipsClient implements ClientModInitializer {
                 if (materialId.isEmpty() || patternId.isEmpty()) {
                     continue;
                 }
-                Component pattern = Component.literal(displayName("trim_pattern.", patternId));
+                Component pattern = Component.literal(displayName("trim_pattern.", patternId))
+                        .setStyle(Style.EMPTY.withColor(ChatFormatting.GRAY));
                 Component material = Component.literal(displayName("trim_material.", materialId));
                 lines.add(Component.literal("")
-                        .append(pattern.withStyle(ChatFormatting.GRAY))
+                        .append(pattern)
                         .append(Component.literal(" ("))
                         .append(material)
                         .append(Component.literal(")")));
