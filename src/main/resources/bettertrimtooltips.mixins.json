@@ -1,0 +1,15 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "itamio.bettertrimtooltips.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "refmap": "bettertrimtooltips.refmap.json",
+  "mixins": [],
+  "client": [
+    "ArmorTrimMixin"
+  ],
+  "server": [],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

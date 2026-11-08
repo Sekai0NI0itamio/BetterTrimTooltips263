@@ -1,0 +1,24 @@
+modLoader="javafml"
+loaderVersion="[47,)"
+license="MIT"
+
+[[mods]]
+modId="bettertrimtooltips"
+version="1.0.0"
+displayName="Better Trim Tooltips"
+authors="Itamio, Andrew6rant (Andrew Grant)"
+description='''Condenses the tooltips of trimmed armor items from multiple lines into one line. Unofficial Forge port of Better Trim Tooltips by Andrew6rant (Andrew Grant) for Minecraft 1.20.1. See NOTICE for credit and licensing.'''
+
+[[dependencies.bettertrimtooltips]]
+    modId="forge"
+    mandatory=true
+    versionRange="[47,)"
+    ordering="NONE"
+    side="CLIENT"
+
+[[dependencies.bettertrimtooltips]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.20.1,1.21)"
+    ordering="NONE"
+    side="CLIENT"

@@ -1,60 +1,22 @@
 name: build
-
 on:
   push:
   pull_request:
   workflow_dispatch:
-
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Check out repository
-        uses: actions/checkout@v4
-
-      - name: Set up Java 17
-        uses: actions/setup-java@v4
-        with:
-          distribution: temurin
-          java-version: 17
-
-      - name: Set up Gradle caching
-        uses: gradle/actions/setup-gradle@v4
-        with:
-          gradle-version: "9.8.2"
-
-      - name: Validate Gradle wrapper and project configuration
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with: {distribution: temurin, java-version: 17}
+      - uses: gradle/actions/setup-gradle@v4
+        with: {gradle-version: "8.14.5"}
+      - run: chmod +x gradlew && ./gradlew build --no-daemon --warning-mode all
+      - if: always()
         run: |
-          chmod +x gradlew
-          ./gradlew --version --no-daemon
-          test -f settings.gradle || (echo "settings.gradle missing" && exit 1)
-          test -f build.gradle || (echo "build.gradle missing" && exit 1)
-          test -f src/main/resources/fabric.mod.json || (echo "fabric.mod.json missing" && exit 1)
-
-      - name: Build with the Gradle wrapper
-        run: ./gradlew build --no-daemon --warning-mode all
-
-      - name: Confirm the mod JAR exists and is non-empty
-        if: always()
-        run: |
-          echo "=== build/libs ==="
-          ls -la build/libs/ || (echo "build/libs missing: compilation did not produce output" && exit 1)
-          JAR_FOUND=0
-          for jar in build/libs/bettertrimtooltips263-*.jar; do
-            [ -e "$jar" ] || continue
-            case "$jar" in
-              *-sources.jar) echo "source jar: $jar ($(stat -c%s "$jar") bytes)" ;;
-              *) echo "mod jar: $jar ($(stat -c%s "$jar") bytes)"; JAR_FOUND=1
-                 test -s "$jar" || (echo "FAIL: mod JAR is empty: $jar" && exit 1) ;;
-            esac
-          done
-          [ "$JAR_FOUND" = "1" ] || (echo "FAIL: expected mod JAR build/libs/bettertrimtooltips263-*.jar not found" && exit 1)
-          echo "JAR validation passed."
-
-      - name: Upload mod JAR
-        if: always()
+          ls -la build/libs/
+          test -s build/libs/bettertrimtooltips-1.20.1-forge-*.jar || (echo "FAIL: mod JAR not found" && exit 1)
+      - if: always()
         uses: actions/upload-artifact@v4
-        with:
-          name: bettertrimtooltips263-jar
-          path: build/libs/*.jar
-          if-no-files-found: error
+        with: {name: bettertrimtooltips-forge-jar, path: build/libs/*.jar, if-no-files-found: error}
