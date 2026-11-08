@@ -23,5 +23,3 @@ description='''Condenses trimmed armor tooltips into one line. Unofficial NeoFor
     ordering="NONE"
     side="BOTH"
 
-[[mixins]]
-config="bettertrimtooltips.mixins.json"
