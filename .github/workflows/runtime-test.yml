@@ -1,34 +1,30 @@
 name: runtime-test
-on:
-  push:
-  pull_request:
-  workflow_dispatch:
+on: [push, pull_request, workflow_dispatch]
 env:
-  java_version: 17
+  java_version: 25
 jobs:
   runtime-test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-java@v4
-        with: {distribution: temurin, java-version: 17}
+        with: {distribution: temurin, java-version: 25}
       - uses: gradle/actions/setup-gradle@v4
-        with: {gradle-version: "8.14.5"}
+        with: {gradle-version: "9.2.1"}
       - run: chmod +x gradlew && ./gradlew build --no-daemon --warning-mode all
       - run: |
           mkdir -p run/mods
-          cp build/libs/bettertrimtooltips-1.20.1-forge-*.jar run/mods/
-          ls -la run/mods/
+          cp build/libs/bettertrimtooltips-26.3-neoforge-*.jar run/mods/
       - uses: headlesshq/mc-runtime-test@5.0.0
         with:
-          mc: 1.20.1
-          modloader: forge
-          regex: .*forge.*
-          mc-runtime-test: forge
-          java: 17
+          mc: 26.3
+          modloader: neoforge
+          regex: .*neoforge.*
+          mc-runtime-test: neoforge
+          java: 25
           xvfb: "true"
           fabric-api: none
           headlessmc-command: '--jvm "-DMcRuntimeGameTest=false"'
       - if: always()
         uses: actions/upload-artifact@v4
-        with: {name: runtime-test-logs, path: "run/logs/\n.mincraft/logs/\n**/latest.log", if-no-files-found: warn}
+        with: {name: runtime-test-logs, path: "run/logs/\n**/latest.log", if-no-files-found: warn}

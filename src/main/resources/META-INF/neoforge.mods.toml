@@ -1,0 +1,27 @@
+modLoader="javafml"
+loaderVersion="[1,)"
+license="MIT"
+
+[[mods]]
+modId="bettertrimtooltips"
+version="1.0.0"
+displayName="Better Trim Tooltips"
+authors="Itamio, Andrew6rant"
+description='''Condenses trimmed armor tooltips into one line. Unofficial NeoForge port of Better Trim Tooltips by Andrew6rant (MIT).'''
+
+[[dependencies.bettertrimtooltips]]
+    modId="neoforge"
+    mandatory=true
+    versionRange="[26.3.0.101,)"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.bettertrimtooltips]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[26.3,)"
+    ordering="NONE"
+    side="BOTH"
+
+[[mixins]]
+config="bettertrimtooltips.mixins.json"
