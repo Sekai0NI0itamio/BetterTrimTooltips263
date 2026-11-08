@@ -8,7 +8,7 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.equipment.trim.ArmorTrim;
+import net.minecraft.world.item.ArmorTrim;
 
 /**
  * Port of Better Trim Tooltips by Andrew6rant (MIT).
