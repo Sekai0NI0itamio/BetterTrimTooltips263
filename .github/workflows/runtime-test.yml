@@ -1,6 +1,6 @@
 name: runtime-test
 
-# GitHub-only runtime test: launches the real Minecraft 26.3 Fabric client
+# GitHub-only runtime test: launches the real Minecraft 1.21.11 Fabric client
 # headlessly (HeadlessMC + Xvfb via mc-runtime-test), which joins a
 # single-player world, waits for chunks to load, then quits cleanly.
 # Surviving this proves the mod loads at the title screen AND in-game.
@@ -10,7 +10,7 @@ on:
   workflow_dispatch:
 
 env:
-  java_version: 25
+  java_version: 21
 
 jobs:
   runtime-test:
@@ -19,11 +19,11 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v4
 
-      - name: Set up Java 25
+      - name: Set up Java 21
         uses: actions/setup-java@v4
         with:
           distribution: temurin
-          java-version: 25
+          java-version: 21
 
       - name: Set up Gradle caching
         uses: gradle/actions/setup-gradle@v4
@@ -41,16 +41,16 @@ jobs:
           cp build/libs/bettertrimtooltips263-*.jar run/mods/
           ls -la run/mods/
 
-      - name: Run Minecraft 26.3 client (title screen + in-game world load)
+      - name: Run Minecraft 1.21.11 client (title screen + in-game world load)
         uses: headlesshq/mc-runtime-test@5.0.0
         with:
-          mc: 26.3
+          mc: 1.21.11
           modloader: fabric
           regex: .*fabric.*
           mc-runtime-test: fabric
-          java: 25
+          java: 21
           xvfb: "true"
-          fabric-api: 0.165.0
+          fabric-api: 0.141.4
           headlessmc-command: '--jvm "-DMcRuntimeGameTest=false"'
 
       - name: Upload runtime logs
